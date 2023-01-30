@@ -6,6 +6,11 @@ const app = express();
 // connect database
 connectDB();
 
+//Init middleware
+// extended: false to use simple json parser
+// : true to use more powerful json parser
+app.use(express.json({ extended: false }));
+
 const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
