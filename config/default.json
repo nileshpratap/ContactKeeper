@@ -1,3 +1,4 @@
 {
-    "mongoURI":"mongodb+srv://npratapwar:NileshP03@cluster0.asgvr5c.mongodb.net/?retryWrites=true&w=majority"
+    "mongoURI":"mongodb+srv://npratapwar:NileshP03@cluster0.asgvr5c.mongodb.net/?retryWrites=true&w=majority",
+    "jwtSecret": "secret"
 }

@@ -49,6 +49,11 @@ router.post(
       await user.save();
 
       // new user added in the DB, now send client a json web token to log him in, protectedly.
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
       jwt.sign(
         payload,
         config.get("jwtSecret"),
