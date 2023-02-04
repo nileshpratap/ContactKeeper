@@ -1,17 +1,25 @@
-import { set } from "mongoose";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ContactContext from "../../context/contact/ContactContext";
 
 const ContactForm = () => {
+  const contactContext = useContext(ContactContext);
   const [contact, setContact] = useState({
     name: "",
     email: "",
     phone: "",
     type: "personal",
   });
-  const { name, email, phone, type } = contact;
+  const { addContact, current, clearCurrent, updateContact } = contactContext;
 
-  const contactContext = useContext(ContactContext);
+  useEffect(() => {
+    if (current !== null) {
+      setContact(current);
+    } else {
+      setContact({ name: "", email: "", phone: "", type: "personal" });
+    }
+  }, [contactContext, current]);
+
+  const { name, email, phone, type } = contact;
 
   const onChange = (e) => {
     setContact({
@@ -21,14 +29,24 @@ const ContactForm = () => {
   };
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    contactContext.addContact(contact);
+    if (current === null) {
+      addContact(contact);
+    } else {
+      updateContact(contact);
+    }
     console.log(contact);
     setContact({ name: "", email: "", phone: "", type: "personal" });
   };
 
+  const clearAll = () => {
+    clearCurrent();
+  };
+
   return (
     <form action="" onSubmit={handleOnSubmit}>
-      <h2 className="text-primary">Add Contact</h2>
+      <h2 className="text-primary">
+        {current ? "Edit Contact" : "Add Contact"}
+      </h2>
       <label>
         Name:
         <input
@@ -74,7 +92,7 @@ const ContactForm = () => {
         />
       </label>
       <label>
-        &nbsp;&nbsp;&nbsp;Professional
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Professional
         <input
           type="radio"
           name="type"
@@ -84,12 +102,22 @@ const ContactForm = () => {
         />
       </label>
       <div>
-        <input
-          type="submit"
-          value="Add Contact"
-          className="btn btn-primary btn-block"
-        />
+        <label>
+          {current ? "Edit Contact" : "Add Contact"}
+          <input
+            type="submit"
+            value={current ? "Update Contact" : "Add Contact"}
+            className="btn btn-primary btn-block"
+          />
+        </label>
       </div>
+      {current && (
+        <div className="btn btn-light btn-block">
+          <button className="btn btn-light btn-block" onClick={clearAll}>
+            Clear
+          </button>
+        </div>
+      )}
     </form>
   );
 };
