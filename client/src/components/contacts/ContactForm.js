@@ -9,7 +9,14 @@ const ContactForm = () => {
     phone: "",
     type: "personal",
   });
-  const { addContact, current, clearCurrent, updateContact } = contactContext;
+  const {
+    addContact,
+    current,
+    clearCurrent,
+    updateContact,
+    clearFilter,
+    filterContacts,
+  } = contactContext;
 
   useEffect(() => {
     if (current !== null) {
