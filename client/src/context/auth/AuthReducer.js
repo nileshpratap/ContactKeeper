@@ -9,7 +9,7 @@ import {
   CLEAR_ERRORS,
 } from "../types";
 
-const AuthReducer = (state, action) => {
+const authReducer = (state, action) => {
   switch (action.type) {
     case USER_LOADED:
       return {
@@ -19,6 +19,7 @@ const AuthReducer = (state, action) => {
         user: action.payload,
       };
     case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.token);
       return {
         ...state,
@@ -28,7 +29,8 @@ const AuthReducer = (state, action) => {
       };
     case REGISTER_FAIL:
     case AUTH_ERROR:
-      localStorage.removeItem("token");
+    case LOGIN_FAIL:
+    case LOGOUT:
       return {
         ...state,
         token: null,
@@ -42,10 +44,9 @@ const AuthReducer = (state, action) => {
         ...state,
         error: null,
       };
-
     default:
-      return state;
+      throw new Error(`Unsupported type of: ${action.type}`);
   }
 };
 
-export default AuthReducer;
+export default authReducer;

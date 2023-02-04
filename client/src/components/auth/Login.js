@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import AuthContext from "../../context/auth/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const authContext = useContext(AuthContext);
+  const { login, error, clearErrors, isAuthenticated } = authContext;
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -11,10 +16,27 @@ const Login = () => {
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
+
+  let navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Login Submit.");
+    if (!email || !password) {
+      alert("Please fill all the fields.");
+    } else {
+      login({ email, password });
+    }
+    if (isAuthenticated) {
+      navigate("/");
+    }
   };
+
+  useEffect(() => {
+    if (error === "Invalid Credentials") {
+      alert(error);
+      clearErrors();
+    }
+    //eslint-desable-next-line
+  }, [error, isAuthenticated]);
 
   return (
     <div className="form-container">
@@ -37,7 +59,7 @@ const Login = () => {
         </div>
         <input
           type="submit"
-          value="Register"
+          value="Login"
           className="btn btn-primary btn-block"
         />
       </form>
