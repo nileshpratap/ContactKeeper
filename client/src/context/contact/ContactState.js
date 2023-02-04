@@ -15,27 +15,27 @@ import {
 const ContactState = (props) => {
   const initialState = {
     contacts: [
-      {
-        id: "2dc5dec1-5745-47f6-8c40-d5a1082b2575",
-        name: "King",
-        email: "king@gmail.com",
-        phone: "1111-111-1983",
-        type: "professional",
-      },
-      {
-        id: "2dc5dec1-5745-47f6-9890-d5a1082b2575",
-        name: "Raftar",
-        email: "raftar@gmail.com",
-        phone: "1111-111-1234",
-        type: "professional",
-      },
-      {
-        id: "2dc5rdc1-5745-47f6-8c40-d5a1082b2575",
-        name: "Honey",
-        email: "honey7@gmail.com",
-        phone: "1111-111-9876",
-        type: "professional",
-      },
+      // {
+      //   id: "2dc5dec1-5745-47f6-8c40-d5a1082b2575",
+      //   name: "King",
+      //   email: "king@gmail.com",
+      //   phone: "1111-111-1983",
+      //   type: "professional",
+      // },
+      // {
+      //   id: "2dc5dec1-5745-47f6-9890-d5a1082b2575",
+      //   name: "Raftar",
+      //   email: "raftar@gmail.com",
+      //   phone: "1111-111-1234",
+      //   type: "professional",
+      // },
+      // {
+      //   id: "2dc5rdc1-5745-47f6-8c40-d5a1082b2575",
+      //   name: "Honey",
+      //   email: "honey7@gmail.com",
+      //   phone: "1111-111-9876",
+      //   type: "professional",
+      // },
     ],
     current: null,
     filtered: null,

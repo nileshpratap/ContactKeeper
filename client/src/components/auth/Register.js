@@ -1,6 +1,11 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import AuthContext from "../../context/auth/AuthContext";
+import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+const Register = (props) => {
+  const authContext = useContext(AuthContext);
+  const { register, error, clearErrors, isAuthenticated } = authContext;
+
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -10,13 +15,32 @@ const Register = () => {
 
   const { name, email, password, password2 } = user;
 
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (isAuthenticated) {
+      //redirect
+      navigate("/");
+    }
+    if (error === "User already exists") {
+      alert(error);
+      clearErrors();
+    }
+    //eslint-desable-next-line
+  }, [error, isAuthenticated, props.history]);
+
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Register Submit.");
+    // console.log("Register Submit.");
+    console.log(name, email, password);
+    register({
+      name,
+      email,
+      password,
+    });
   };
 
   return (
