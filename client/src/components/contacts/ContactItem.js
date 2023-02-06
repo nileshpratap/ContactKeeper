@@ -4,13 +4,13 @@ import ContactContext from "../../context/contact/ContactContext";
 
 const ContactItem = ({ contact }) => {
   // we just need the contact dispatch without state.
-  const { id, name, email, phone, type } = contact;
+  const { _id, name, email, phone, type } = contact;
 
   const contactContext = useContext(ContactContext);
   const { deleteContact, setCurrent, clearCurrent } = contactContext;
 
   const onDelete = (e) => {
-    deleteContact(id);
+    deleteContact(_id);
     clearCurrent();
   };
 

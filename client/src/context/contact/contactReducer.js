@@ -6,21 +6,40 @@ import {
   UPDATE_CONTACT,
   FILTER_CONTACTS,
   CLEAR_FILTER,
+  CONTACT_ERROR,
+  GET_CONTACTS,
+  CLEAR_CONTACTS,
 } from "../types";
 
 const contactReducer = (state, action) => {
   switch (action.type) {
+    case GET_CONTACTS:
+      return {
+        ...state,
+        contacts: action.payload,
+        loading: false,
+      };
+    case CLEAR_CONTACTS:
+      return {
+        ...state,
+        contacts: null,
+        filtered: null,
+        error: null,
+        current: null,
+      };
     case ADD_CONTACT:
       return {
         ...state,
         contacts: [...state.contacts, action.payload],
+        loading: false,
       };
     case DELETE_CONTACT:
       return {
         ...state,
         contacts: state.contacts.filter(
-          (contact) => contact.id !== action.payload
+          (contact) => contact._id !== action.payload
         ),
+        loading: false,
       };
     case SET_CURRENT:
       return {
@@ -36,8 +55,9 @@ const contactReducer = (state, action) => {
       return {
         ...state,
         contacts: state.contacts.map((contact) => {
-          return contact.id === action.payload.id ? action.payload : contact;
+          return contact._id === action.payload._id ? action.payload : contact;
         }),
+        loading: false,
       };
     case FILTER_CONTACTS:
       return {
@@ -51,6 +71,11 @@ const contactReducer = (state, action) => {
       return {
         ...state,
         filtered: null,
+      };
+    case CONTACT_ERROR:
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;

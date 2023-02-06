@@ -62,6 +62,7 @@ const AuthState = (props) => {
         type: REGISTER_FAIL,
         payload: error.response.data.msg,
       });
+      alert("Registration Failed");
     }
   };
 
@@ -78,21 +79,28 @@ const AuthState = (props) => {
         formData,
         config
       );
+      console.log("success1.");
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
+      console.log("success2.");
       loadUser();
+      console.log("success3.");
     } catch (error) {
+      console.log("In failure");
       dispatch({
         type: LOGIN_FAIL,
         payload: error.response.data.msg,
       });
+      alert("Login Failed");
     }
   };
 
   // logout
-  const logout = () => {};
+  const logout = () => {
+    dispatch({ type: LOGOUT });
+  };
 
   // clear errors
   const clearErrors = () => {

@@ -18,15 +18,15 @@ const Login = () => {
   };
 
   let navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {
       alert("Please fill all the fields.");
     } else {
-      login({ email, password });
-    }
-    if (isAuthenticated) {
-      navigate("/");
+      await login({ email, password });
+      if (isAuthenticated) {
+        navigate("/");
+      }
     }
   };
 
