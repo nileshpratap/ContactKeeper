@@ -9,6 +9,13 @@ connectDB();
 
 app.use(cors());
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://coult.onrender.com"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
 //Init middleware
 // extended: false to use simple json parser
 // : true to use more powerful json parser
