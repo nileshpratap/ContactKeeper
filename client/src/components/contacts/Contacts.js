@@ -18,7 +18,7 @@ const Contacts = () => {
 
   return (
     <Fragment>
-      {contacts !== null && !loading ? (
+      {contacts !== null&& Array.isArray(contacts) &&  !loading ? (
         filtered !== null ? (
           filtered.map((contact) => {
             return <ContactItem key={contact.id} contact={contact} />;
