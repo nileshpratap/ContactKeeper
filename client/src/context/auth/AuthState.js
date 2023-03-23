@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
 import axios from "axios";
+axios.defaults.baseURL = "https://coult.onrender.com";
 import AuthContext from "./AuthContext";
 import AuthReducer from "./AuthReducer";
 import setAuthToken from "../../utils/setAuthToken";
