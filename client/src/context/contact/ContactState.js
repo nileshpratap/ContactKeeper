@@ -16,7 +16,6 @@ import {
 } from "../types";
 
 import axios from "axios";
-// axios.defaults.baseURL = "https://coult.onrender.com";
 
 const ContactState = (props) => {
   const initialState = {
