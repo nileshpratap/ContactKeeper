@@ -30,7 +30,9 @@ const ContactState = (props) => {
   // Get Contacts.
   const getContacts = async () => {
     try {
-      const res = await axios.get(process.env.BASE_URL + "/api/contacts");
+      const res = await axios.get(
+        process.env.REACT_APP_BASE_URL + "/api/contacts"
+      );
       dispatch({
         type: GET_CONTACTS,
         payload: res.data,
@@ -58,7 +60,7 @@ const ContactState = (props) => {
 
     try {
       const res = await axios.post(
-        process.env.BASE_URL + "/api/contacts",
+        process.env.REACT_APP_BASE_URL + "/api/contacts",
         contact,
         config
       );
@@ -78,7 +80,7 @@ const ContactState = (props) => {
   const deleteContact = async (id) => {
     try {
       const res = await axios.delete(
-        process.env.BASE_URL + `/api/contacts/${id}`
+        process.env.REACT_APP_BASE_URL + `/api/contacts/${id}`
       );
       dispatch({
         type: DELETE_CONTACT,
@@ -112,7 +114,7 @@ const ContactState = (props) => {
     };
     try {
       const res = await axios.put(
-        process.env.BASE_URL + `/api/contacts/${contact._id}`,
+        process.env.REACT_APP_BASE_URL + `/api/contacts/${contact._id}`,
         contact,
         config
       );

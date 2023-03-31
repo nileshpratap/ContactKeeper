@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+mongoose.set("strictQuery", true);
 const ContactSchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,

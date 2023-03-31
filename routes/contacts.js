@@ -6,7 +6,7 @@ const { check, validationResult } = require("express-validator/check");
 const User = require("../models/User.js");
 const Contact = require("../models/Contact.js");
 const { default: mongoose } = require("mongoose");
-
+mongoose.set("strictQuery", true);
 // @route GET api/contacts
 // @desc Get all users contacts
 // @access Private

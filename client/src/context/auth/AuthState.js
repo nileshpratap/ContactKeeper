@@ -32,7 +32,7 @@ const AuthState = (props) => {
       setAuthToken(localStorage.token);
     }
     try {
-      const res = await axios.get(process.env.BASE_URL + "/api/auth");
+      const res = await axios.get(process.env.REACT_APP_BASE_URL + "/api/auth");
       dispatch({ type: USER_LOADED, payload: res.data });
     } catch (error) {
       dispatch({ type: AUTH_ERROR });
@@ -47,8 +47,9 @@ const AuthState = (props) => {
       },
     };
     try {
+      console.log(process.env.REACT_APP_BASE_URL);
       const res = await axios.post(
-        process.env.BASE_URL + "/api/users",
+        process.env.REACT_APP_BASE_URL + "/api/users",
         formData,
         config
       );
@@ -75,7 +76,7 @@ const AuthState = (props) => {
     };
     try {
       const res = await axios.post(
-        process.env.BASE_URL + "/api/auth",
+        process.env.REACT_APP_BASE_URL + "/api/auth",
         formData,
         config
       );

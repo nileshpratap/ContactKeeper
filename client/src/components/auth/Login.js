@@ -35,7 +35,6 @@ const Login = () => {
       alert(error);
       clearErrors();
     }
-    //eslint-desable-next-line
   }, [error, isAuthenticated]);
 
   return (
