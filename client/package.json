@@ -40,5 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://coult.onrender.com:5000"
+  "proxy": "http://localhost:5000"
 }
