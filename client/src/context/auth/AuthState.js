@@ -17,11 +17,13 @@ import {
 const AuthState = (props) => {
   const initialState = {
     token: localStorage.getItem("token"),
-    isAuthenticated: null,
-    loading: true,
+    isAuthenticated: false,
+    loading: false,
     user: null,
     error: null,
   };
+
+  // Create a custom hook to use the auth context
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
   // load user
@@ -34,6 +36,7 @@ const AuthState = (props) => {
     try {
       const res = await axios.get(process.env.REACT_APP_BASE_URL + "/api/auth");
       dispatch({ type: USER_LOADED, payload: res.data });
+      await new Promise((resolve) => setTimeout(resolve, 0));
     } catch (error) {
       dispatch({ type: AUTH_ERROR });
     }
@@ -47,17 +50,22 @@ const AuthState = (props) => {
       },
     };
     try {
-      console.log(process.env.REACT_APP_BASE_URL);
+      state.loading = true;
+      // console.log(process.env.REACT_APP_BASE_URL);
       const res = await axios.post(
         process.env.REACT_APP_BASE_URL + "/api/users",
         formData,
         config
       );
+      console.log("hi", res);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
+      // wait for dispatch to complete
+      await new Promise((resolve) => setTimeout(resolve, 0));
       loadUser();
+      state.loading = false;
     } catch (error) {
       dispatch({
         type: REGISTER_FAIL,
@@ -75,21 +83,22 @@ const AuthState = (props) => {
       },
     };
     try {
+      state.loading = true;
       const res = await axios.post(
         process.env.REACT_APP_BASE_URL + "/api/auth",
         formData,
         config
       );
-      console.log("success1.");
+      console.log(state);
+
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
-      console.log("success2.");
-      loadUser();
-      console.log("success3.");
+      console.log(state);
+      await loadUser();
     } catch (error) {
-      console.log("In failure");
+      // console.log("In failure");
       dispatch({
         type: LOGIN_FAIL,
         payload: error.response.data.msg,

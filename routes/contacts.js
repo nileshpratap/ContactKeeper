@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../middleware/auth.js");
-const { check, validationResult } = require("express-validator/check");
+const { check, validationResult } = require("express-validator");
 
 const User = require("../models/User.js");
 const Contact = require("../models/Contact.js");
@@ -91,9 +91,9 @@ router.put("/:id", auth, async (req, res) => {
     }
 
     contact = await Contact.findByIdAndUpdate(
-      req.params.id,
+      req.params.id, // contact id
       { $set: contactFields },
-      { new: true }
+      { new: true } // save even if contact is new
     );
 
     res.json(contact);
@@ -120,9 +120,9 @@ router.delete("/:id", auth, async (req, res) => {
 
     await Contact.findByIdAndDelete(req.params.id);
 
-    res.json({ msg: "Contact Removed." });
+    return res.json({ msg: "Contact Removed." });
 
-    res.json(contact);
+    // return res.json(contact);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");

@@ -1,0 +1,10 @@
+.app-bg {
+  background-image: url(./Screenshot\ 2023-06-25\ 144642.png);
+  opacity: 0.8;
+
+  /* /* background-size: "cover"; */
+  height: 100vh;
+  /* margin-top: -70px;
+  font-size: 50px;
+  background-repeat: no-repeat;  */
+}

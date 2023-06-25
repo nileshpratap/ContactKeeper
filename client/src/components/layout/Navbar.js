@@ -53,12 +53,18 @@ const Navbar = ({ icon, title }) => {
         <i className={icon} style={{ height: "40px" }}></i> {title}
       </h1>
       <ul>
-        {/* <li>
-          <Link to="/">Home</Link>
-        </li> */}
-        {/* <li>
-          <Link to="/about">About</Link>
-        </li> */}
+        <li>
+          <Link to="/">
+            <i className="fas">Home</i>
+          </Link>
+        </li>
+        <li>
+          <Link to="/about">
+            <i className="fas">About</i>
+          </Link>
+        </li>
+      </ul>
+      <ul>
         {/* <li>
           <Link to="/register">Register</Link>
         </li>
@@ -77,7 +83,7 @@ Navbar.propTypes = {
   icon: PropTypes.string,
 };
 Navbar.defaultProps = {
-  title: "Contact Keeper",
+  title: "Coult",
   icon: "fas fa-id-card-alt",
 };
 

@@ -205,6 +205,7 @@ img {
 .btn-block {
   display: block;
   width: 100%;
+  border-radius: 10px;
 }
 
 .btn-sm {
@@ -399,7 +400,24 @@ table th {
   opacity: 0;
   transition: opacity 1000ms ease-in;
 }
-
+.footer {
+  margin: auto;
+  text-align: center;
+  display: inline-block;
+  width: 80vw;
+  font-size: large;
+}
+.about {
+  font-family: cursive;
+}
+.forminput {
+  font-family: cursive;
+  font-size: large;
+}
+.rounded {
+  border-radius: 5px;
+  border: 2px solid #003699 !important;
+}
 /* Mobile Styles */
 @media (max-width: 700px) {
   .hide-sm {

@@ -43,11 +43,13 @@ router.post(
     try {
       let user = await User.findOne({ email: email });
       if (!user) {
-        return res.status(400).json({ msg: "invalid credentials" });
+        return res
+          .status(400)
+          .json({ msg: "User with this Email does not exist." });
       }
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
-        return res.status(400).json({ msg: "invalid credentials" });
+        return res.status(400).json({ msg: "Invalid Password." });
       }
 
       // new user added in the DB, now send client a json web token to log him in, protectedly.
@@ -66,8 +68,6 @@ router.post(
           if (err) throw err;
           res.json({ token });
         }
-
-        // we need a middleware to add this token in the header for account access.
       );
     } catch (error) {
       console.log(error.message);

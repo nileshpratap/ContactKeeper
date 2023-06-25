@@ -19,13 +19,17 @@ const ContactFilter = () => {
       clearFilter();
     }
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
-    <form action="">
+    <form action="" onSubmit={handleSubmit}>
       <input
         ref={text}
         type="text"
         placeholder="Filter Contacts..."
         onChange={onChange}
+        className="rounded"
       />
     </form>
   );

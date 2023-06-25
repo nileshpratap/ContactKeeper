@@ -54,31 +54,33 @@ const ContactForm = () => {
       <h2 className="text-primary">
         {current ? "Edit Contact" : "Add Contact"}
       </h2>
-      <label>
+      <label className="forminput">
         Name:
         <input
           type="text"
-          placeholder="John Doe"
+          placeholder="Adipurush"
           name="name"
           value={name}
           onChange={onChange}
           required
+          className="rounded"
         />
       </label>
 
-      <label>
+      <label className="forminput">
         Email:
         <input
           type="email"
-          placeholder="johnd@yahoo.com"
+          placeholder="heaven@yahoo.com"
           name="email"
           value={email}
           onChange={onChange}
           required
+          className="rounded"
         />
       </label>
 
-      <label>
+      <label className="forminput">
         Phone:
         <input
           type="text"
@@ -86,6 +88,7 @@ const ContactForm = () => {
           name="phone"
           value={phone}
           onChange={onChange}
+          className="rounded"
         />
       </label>
 
@@ -112,7 +115,6 @@ const ContactForm = () => {
       </label>
       <div>
         <label>
-          {current ? "Edit Contact" : "Add Contact"}
           <input
             type="submit"
             value={current ? "Update Contact" : "Add Contact"}
