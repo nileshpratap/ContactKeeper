@@ -18,7 +18,7 @@
 body {
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1;
   background-color: #fff;
   color: #333;
 }
@@ -51,13 +51,13 @@ img {
 /* Text Styles*/
 .x-large {
   font-size: 4rem;
-  line-height: 1.2;
+  line-height: 1;
   margin-bottom: 1rem;
 }
 
 .large {
   font-size: 3rem;
-  line-height: 1.2;
+  line-height: 1;
   margin-bottom: 1rem;
 }
 
@@ -92,6 +92,8 @@ img {
 
 /* Cards */
 .card {
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
   border: #ccc 1px dotted;
   margin: 0.7rem 0;
@@ -239,6 +241,18 @@ img {
   background: var(--primary-color);
   color: #fff;
 }
+.btn-ternary {
+  background-color: #385b6e;
+  color: #fff;
+  border: 1px solid grey;
+  display: inline-block;
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+}
 
 .btn-light,
 .bg-light,
@@ -291,7 +305,12 @@ img {
 }
 
 .round-img {
-  border-radius: 50%;
+  border-radius: 12%;
+  height: 135px;
+  width: 135px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
 }
 
 /* Forms */
@@ -418,6 +437,7 @@ table th {
   border-radius: 5px;
   border: 2px solid #003699 !important;
 }
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .hide-sm {

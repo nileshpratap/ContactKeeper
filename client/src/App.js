@@ -15,6 +15,8 @@ import AlertState from "./context/alert/AlertState";
 
 import setAuthToken from "./utils/setAuthToken";
 
+// import FileInput from "./FileInput";
+
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -41,6 +43,7 @@ const App = () => {
         </AlertState>
       </ContactState>
     </AuthState>
+    // <FileInput />
   );
 };
 

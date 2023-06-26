@@ -28,7 +28,7 @@ const Register = (props) => {
       alert(error);
       clearErrors();
     }
-    //eslint-desable-next-line
+    //eslint-disable-next-line
   }, [error, isAuthenticated, props.history]);
 
   const onChange = (e) => {

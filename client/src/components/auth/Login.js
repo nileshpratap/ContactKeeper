@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "../../context/auth/AuthContext";
 import { useNavigate } from "react-router-dom";
-import AlertContext from "../../context/alert/alertContext";
+// import AlertContext from "../../context/alert/alertContext";
 
 const Login = () => {
-  const alertContext = useContext(AlertContext);
+  // const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
   let { login, error, clearErrors, isAuthenticated } = authContext;
 
@@ -41,6 +41,7 @@ const Login = () => {
       alert(error);
       clearErrors();
     }
+    // eslint-disable-next-line
   }, [error, isAuthenticated]);
 
   return (

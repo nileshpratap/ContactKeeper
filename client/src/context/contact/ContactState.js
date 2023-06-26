@@ -13,6 +13,7 @@ import {
   FILTER_CONTACTS,
   CLEAR_FILTER,
   CONTACT_ERROR,
+  CLEAR_IMAGE,
 } from "../types";
 
 import axios from "axios";
@@ -23,6 +24,7 @@ const ContactState = (props) => {
     current: null,
     filtered: null,
     error: null,
+    file: null,
   };
 
   const [state, dispatch] = useReducer(contactReducer, initialState);
@@ -68,10 +70,11 @@ const ContactState = (props) => {
         type: ADD_CONTACT,
         payload: res.data,
       });
+      return res.data._id;
     } catch (error) {
       dispatch({
         type: CONTACT_ERROR,
-        payload: error.response.msg,
+        payload: error,
       });
     }
   };
@@ -86,7 +89,9 @@ const ContactState = (props) => {
         type: DELETE_CONTACT,
         payload: id,
       });
-      console.log(state.contacts);
+
+      console.log(res);
+      // console.log(state.contacts);
     } catch (error) {
       dispatch({
         type: CONTACT_ERROR,
@@ -103,6 +108,7 @@ const ContactState = (props) => {
   // clear current contact
   const clearCurrent = () => {
     dispatch({ type: CLEAR_CURRENT });
+    clearImage();
   };
 
   // update contact
@@ -113,6 +119,7 @@ const ContactState = (props) => {
       },
     };
     try {
+      // console.log(contact);
       const res = await axios.put(
         process.env.REACT_APP_BASE_URL + `/api/contacts/${contact._id}`,
         contact,
@@ -122,6 +129,9 @@ const ContactState = (props) => {
         type: UPDATE_CONTACT,
         payload: res.data,
       });
+      clearImage();
+      clearCurrent();
+      return res.data._id;
     } catch (error) {
       dispatch({
         type: CONTACT_ERROR,
@@ -130,6 +140,46 @@ const ContactState = (props) => {
     }
   };
 
+  const uploadImage = async (contact, file) => {
+    // send image to backend
+    console.log(state);
+    // console.log(file, "frontend");
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    try {
+      // Create a new FormData object
+      const formData = new FormData();
+      console.log("hi ", file);
+      formData.append("file", file); // Append the file to the form data
+
+      ///////
+      const res = await axios.put(
+        process.env.REACT_APP_BASE_URL +
+          `/api/contacts/uploadimage/${contact._id}`,
+        formData,
+        config
+      );
+      // console.log("hi", res);
+      // set the contact from res data
+      dispatch({
+        type: UPDATE_CONTACT,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: CONTACT_ERROR,
+        payload: error,
+      });
+    }
+    clearImage();
+  };
+
+  const clearImage = () => {
+    dispatch({ type: CLEAR_IMAGE });
+  };
   // filter contacts
   const filterContacts = (text) => {
     dispatch({ type: FILTER_CONTACTS, payload: text });
@@ -147,6 +197,7 @@ const ContactState = (props) => {
         current: state.current,
         filtered: state.filtered,
         error: state.error,
+        file: state.file,
         clearFilter,
         filterContacts,
         addContact,
@@ -156,6 +207,9 @@ const ContactState = (props) => {
         updateContact,
         getContacts,
         clearContacts,
+        // handleFileChange,
+        uploadImage,
+        clearImage,
       }}
     >
       {props.children}
