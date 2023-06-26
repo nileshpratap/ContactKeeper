@@ -25,6 +25,10 @@ const ContactSchema = mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  profileimg: {
+    type: String,
+    default: null,
+  },
 });
 
 module.exports = mongoose.model("contact", ContactSchema);

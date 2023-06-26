@@ -57,7 +57,7 @@ const AuthState = (props) => {
         formData,
         config
       );
-      console.log("hi", res);
+      // console.log("hi", res);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
@@ -89,14 +89,14 @@ const AuthState = (props) => {
         formData,
         config
       );
-      console.log(state);
 
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
-      console.log(state);
+
       await loadUser();
+      console.log("User logged in.");
     } catch (error) {
       // console.log("In failure");
       dispatch({

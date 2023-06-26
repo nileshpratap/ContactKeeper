@@ -9,6 +9,8 @@ import {
   CONTACT_ERROR,
   GET_CONTACTS,
   CLEAR_CONTACTS,
+  SET_PROFILEIMG,
+  CLEAR_IMAGE,
 } from "../types";
 
 const contactReducer = (state, action) => {
@@ -40,6 +42,16 @@ const contactReducer = (state, action) => {
           (contact) => contact._id !== action.payload
         ),
         loading: false,
+      };
+    case SET_PROFILEIMG:
+      return {
+        ...state,
+        file: action.payload,
+      };
+    case CLEAR_IMAGE:
+      return {
+        ...state,
+        file: null,
       };
     case SET_CURRENT:
       return {

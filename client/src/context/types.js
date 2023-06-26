@@ -18,3 +18,5 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const CONTACT_ERROR = "CONTACT_ERROR";
 export const GET_CONTACTS = "GET_CONTACTS";
 export const CLEAR_CONTACTS = "CLEAR_CONTACTS";
+export const SET_PROFILEIMG = "SET_PROFILEIMG";
+export const CLEAR_IMAGE = "CLEAR_IMAGE";
