@@ -61,37 +61,25 @@ app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
 });
 
-const clearFiles = () => {
-  fs.readdir(folderPath, (err, files) => {
-    if (err) {
-      console.error("Error reading folder:", err);
-      return;
+// delete uploads every 6hours and recreate it
+setInterval(() => {
+  // deleter the uploads folder
+  fs.rmdir(folderPath, { recursive: true }, (error) => {
+    if (error) {
+      console.error("Error deleting folder:", error);
+    } else {
+      console.log("Folder deleted successfully.");
     }
-
-    files.forEach((file) => {
-      const filePath = path.join(folderPath, file);
-
-      // Delete each file if it was saved before 5 min
-      let savedTime = +filePath.substring(5, 18);
-      const time = Date.now();
-
-      if (savedTime + 3000000 < time) {
-        fs.unlink(filePath, (err) => {
-          if (err) {
-            console.error("Error deleting file:", err);
-            return;
-          }
-          console.log(`File ${filePath} deleted successfully.`);
-        });
-      }
-    });
-
-    setTimer();
   });
-};
-const setTimer = () => {
-  setTimeout(clearFiles(), 60000);
-};
+  // create again
+  fs.mkdir(folderPath, { recursive: true }, (error) => {
+    if (error) {
+      console.error("Error creating folder:", error);
+    } else {
+      console.log("Folder created successfully.");
+    }
+  });
+}, 6 * 60 * 60 * 1000);
 
 // upload for cloudinary example
 // cloudinary.uploader.upload(

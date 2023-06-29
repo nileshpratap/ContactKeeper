@@ -40,7 +40,7 @@ const ContactForm = () => {
   const handleFileChange = (event) => {
     // set the file
     let currfile = event.target.files[0];
-    console.log(file);
+    console.log(currfile);
     if (
       currfile.type.startsWith("image/" || currfile.type === "image/gif") &&
       currfile.size < 4 * 1024 * 1024
