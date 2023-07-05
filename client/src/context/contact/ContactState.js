@@ -39,6 +39,7 @@ const ContactState = (props) => {
         type: GET_CONTACTS,
         payload: res.data,
       });
+      await new Promise((resolve) => setTimeout(resolve, 0));
     } catch (error) {
       dispatch({
         type: CONTACT_ERROR,

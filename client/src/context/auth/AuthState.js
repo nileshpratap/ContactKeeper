@@ -94,6 +94,7 @@ const AuthState = (props) => {
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
+      await new Promise((resolve) => setTimeout(resolve, 0));
 
       await loadUser();
       console.log("User logged in.");

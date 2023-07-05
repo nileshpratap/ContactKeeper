@@ -15,12 +15,9 @@ const Login = () => {
 
   const { email, password } = user;
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/");
-    }
-    //eslint-disable-next-line
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   //eslint-disable-next-line
+  // }, [isAuthenticated]);
 
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -40,6 +37,9 @@ const Login = () => {
     if (error === "Invalid Credentials") {
       alert(error);
       clearErrors();
+    }
+    if (isAuthenticated) {
+      navigate("/");
     }
     // eslint-disable-next-line
   }, [error, isAuthenticated]);
