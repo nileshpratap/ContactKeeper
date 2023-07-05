@@ -22,10 +22,10 @@ const ContactForm = () => {
 
   useEffect(() => {
     if (current) {
-      console.log("current is not empty");
+      // console.log("current is not empty");
       setContact(current);
     } else {
-      console.log("current is empty");
+      // console.log("current is empty");
       setContact({
         name: "",
         email: "",
